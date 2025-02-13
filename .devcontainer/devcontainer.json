@@ -14,7 +14,8 @@
 				"pamaron.pytest-runner",
 				"marp-team.marp-vscode",
 				"ryuta46.multi-command",
-				"george-alisson.html-preview-vscode"
+				"george-alisson.html-preview-vscode",
+				"mathematic.vscode-pdf"
 			]
 		}
 	}

@@ -15,19 +15,9 @@ def stream(args, lines):
     s.connect((sock, port))
     try:
       for line in lines:
-        #print(line, end='')     
-        ##TODO:E2.2 fix this streaming implementation
-        ## line is a json string and you have to extract only the "response" field
-        ## Load it into a Python dictionary
-        #json_data = json.loads(line.decode("utf-8"))
-        ## Extract and print the 'response' field
-        #resp = json_data.get("response", "error: no json 'response' field found")
-        #msg = {"output": resp}
-        ##msg = {"output": line.decode("utf-8")} #NO NO NO NO NO NO NO NO NO
-        out += str(line)
-        #END TODO
         msg = {"output": line.choices[0].delta.content}
         s.sendall(json.dumps(msg).encode("utf-8"))
+        out += str(line) #; print(line, end='')
     except Exception as e:
       traceback.print_exc(e)
       out = str(e)
@@ -67,7 +57,7 @@ class Chat:
         res = self.client.chat.completions.create(
             model=MODEL,
             messages=self.messages,
-            stream = True
+            stream=True,
         )
         # END TODO
         try: 

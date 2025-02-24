@@ -122,7 +122,7 @@ Receive a stream:
 
 ```python
 for m in res: 
-   print(m.choices[0].delta.content)
+   print(m.choices[0].delta.content, end='')
 ```
 
 ---

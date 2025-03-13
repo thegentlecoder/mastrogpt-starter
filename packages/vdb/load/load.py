@@ -3,6 +3,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 from bs4.element import Comment
 import re
+import nltk
 
 USAGE = f"""Welcome to the Vector DB Loader.
 Write text to insert in the DB.
@@ -23,6 +24,10 @@ def text_from_html(body):
     texts = soup.findAll(text=True)
     visible_texts = filter(tag_visible, texts)  
     return u" ".join(t.strip() for t in visible_texts)
+
+def sentence_tokenize(text):
+    tokens = text.split(".")
+    return tokens
 
 def tokenize(text):
     tokens = text.split()
@@ -87,7 +92,7 @@ def load(args):
         html = f.read()
         soup = BeautifulSoup(html)
         text = text_from_html(html)
-        tokens = tokenize(text)
+        tokens = sentence_tokenize(text)
         out = "Inserted" 
         for token in tokens:
           res = db.insert(token)

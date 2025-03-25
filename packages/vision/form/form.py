@@ -1,5 +1,6 @@
 import os, requests as req
 import vision
+import bucket
 
 USAGE = "Please upload a picture and I will tell you what I see"
 FORM = [

@@ -16,6 +16,7 @@ class Bucket:
           self.client.put_object(Bucket=self.bucket, Key=key, Body=body)
           return "OK" if self.size(key) != -1 else "Error"
         except Exception as e:
+          raise e
           return str(e)
         
     def read(self, key):
